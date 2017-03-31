@@ -1,0 +1,28 @@
+// Mixins
+
+@mixin transition($time) {
+  transition: all $time ease-in-out;
+}
+
+@mixin no-transition {
+  transition: none;
+}
+
+$small-screens: "(min-width: 992px) and (max-width: 1199px)";
+$tablets: "(min-width: 768px) and (max-width: 991px)";
+$mobiles: "(max-width: 767px)";
+$mobiles-portrait: "(max-width: 767px) and (orientation: portrait)";
+$mobiles-landscape: "(max-width: 767px) and (orientation: landscape)";
+$xxs: "(max-width: 583px)";
+$xxxs: "(max-width: 320px)";
+$md: $small-screens;
+$sm: $tablets;
+$xs: $mobiles;
+$xs-p: $mobiles-portrait;
+$xs-l: $mobiles-landscape;
+
+@mixin media($media) {
+  @media #{$media} {
+    @content;
+  }
+}

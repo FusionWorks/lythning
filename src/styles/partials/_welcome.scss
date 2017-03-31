@@ -1,0 +1,154 @@
+.welcome-user {
+  height: 540px;
+  h2 {
+    color: $black;
+    @include font-bold;
+    font-size: 60px;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -0.03em;
+    padding: 60px 0;
+    @include media($sm) {
+      font-size: 50px;
+    }
+    @include media($xs) {
+      font-size: 30px;
+      padding: 30px 0 20px;
+    }
+  }
+  h3 {
+    @include font-reg;
+    font-size: 30px;
+    color: $black;
+    line-height: 45px;
+    margin: 0 0 30px;
+    @include media($sm) {
+      font-size: 24px;
+      line-height: 36px;
+    }
+    @include media($xs) {
+      font-size: 20px;
+      line-height: 28px;
+      margin: 0 0 20px;
+    }
+  }
+  h4 {
+    @include font-reg;
+    font-size: 24px;
+    color: $black;
+    line-height: 35px;
+    margin: 0;
+    @include media($sm) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    @include media($xs) {
+      font-size: 17px;
+      line-height: 22px;
+    }
+  }
+  .form-wrap {
+    padding: 10px 0 0 10%;
+    @include media($xs) {
+      padding-left: 0;
+    }
+    .form-group {
+      position: relative;
+      label {
+        @include font-reg;
+        color: $black;
+        font-size: 18px;
+        padding-left: 10px;
+        @include media($xs) {
+          font-size: 15px;
+          padding-left: 0;
+        }
+      }
+      input.form-control {
+        border: 2px solid $black;
+        border-radius: 4px;
+        font-size: 18px;
+        color: $black;
+        padding: 11px 12px;
+        height: 44px;
+        &:focus {
+          border-color: $blue;
+        }
+        @include media($xs) {
+          font-size: 16px;
+          height: 40px;
+        }
+      }
+      .ui-autocomplete {
+        margin: 2px 0 0;
+        list-style-type: none;
+        position: absolute;
+        z-index: 10;
+        background-color: $white;
+        padding: 15px 0;
+        border: 2px solid $black;
+        border-radius: 4px;
+        .ui-menu-item {
+          .ui-menu-item-wrapper {
+            font-size: 16px;
+            padding: 5px 15px;
+            &.ui-state-active {
+              background-color: $bg;
+            }
+          }
+        }
+      }
+      .btn-find {
+        display: block;
+        border: 2px solid $red;
+        background-color: $red;
+        border-radius: 4px;
+        color: $white;
+        font-size: 18px;
+        @include font-reg;
+        text-transform: uppercase;
+        outline: none;
+        width: 100%;
+        height: 44px;
+        margin-top: 30px;
+        @include transition(300ms);
+        &:hover {
+          background-color: $red-hover;
+          border-color: $red-hover;
+        }
+        @include media($xs) {
+          height: 40px;
+          font-size: 16px;
+          margin-top: 20px;
+        }
+        &.has-error {
+          animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+        &[disabled] {
+          background-color: $green;
+          border-color: $green;
+        }
+      }
+      &.has-error {
+        label {
+          color: $red;
+        }
+        input.form-control {
+          border-color: $red;
+        }
+      }
+      .message {
+        text-align: center;
+        margin: 15px 0 0;
+        color: $red;
+        font-size: 18px;
+        @include media($xs) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

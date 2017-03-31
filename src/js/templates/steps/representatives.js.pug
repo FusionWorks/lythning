@@ -1,0 +1,34 @@
+.container
+  .row
+    .col-xs-12
+      h2 Select your representatives
+      h3 To find the topics they are working on
+  .row
+    .col-sm-8.col-sm-offset-2
+      ul.rep-list
+        each rep in local
+          li
+            input(type="checkbox" id="rep-" + rep.id data-id= rep.id)
+            label(for="rep-" + rep.id)
+              span= rep.level
+              p
+                | #{rep.name} &mdash; #{rep.position}
+        each rep in state
+          li
+            input(type="checkbox" id="rep-" + rep.id data-id= rep.id)
+            label(for="rep-" + rep.id)
+              span= rep.level
+              p
+                | #{rep.name} &mdash; #{rep.position}
+        each rep in national
+          li
+            input(type="checkbox" id="rep-" + rep.id data-id= rep.id)
+            label(for="rep-" + rep.id)
+              span= rep.level
+              p
+                | #{rep.name} &mdash; #{rep.position}
+
+  .row
+    .col-sm-8.col-sm-offset-2
+      button.btn-next.js-next(type="button") Next
+      p.message.js-message

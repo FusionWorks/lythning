@@ -1,0 +1,146 @@
+.representatives {
+  margin-bottom: 30px;
+  h2 {
+    color: $black;
+    @include font-bold;
+    font-size: 60px;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -0.03em;
+    padding: 60px 0 30px;
+    @include media($sm) {
+      font-size: 50px;
+    }
+    @include media($xs) {
+      font-size: 30px;
+      padding: 30px 0 20px;
+    }
+  }
+  h3 {
+    @include font-reg;
+    font-size: 30px;
+    color: $black;
+    line-height: 45px;
+    margin: 0 0 30px;
+    text-align: center;
+    @include media($sm) {
+      font-size: 24px;
+      line-height: 36px;
+    }
+    @include media($xs) {
+      font-size: 20px;
+      line-height: 28px;
+      margin: 0 0 20px;
+    }
+  }
+  .rep-list {
+    padding: 0;
+    margin: 0 0 30px;
+    list-style-type: none;
+    li {
+      margin-bottom: 2px;
+      input[type="checkbox"] {
+        display: none;
+      }
+      input[type="checkbox"]:checked ~ label {
+        background-color: rgba(68, 171, 6, 0.3);
+        &:before,
+        &:after {
+          display: block;
+          content: " ";
+          position: absolute;
+          width: 4px;
+          background-color: $white;
+          height: 30px;
+          animation: pulsate 2s infinite;
+        }
+        &:before {
+          right: 20px;
+          top: 16px;
+          transform: rotate(30deg);
+        }
+        &:after {
+          right: 31px;
+          top: 27px;
+          transform: rotate(-30deg);
+          height: 18px;
+        }
+      }
+      > label {
+        position: relative;
+        @include font-reg;
+        display: block;
+        margin: 0;
+        padding: 8px 10px;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.4);
+        @include transition(300ms);
+        &:hover {
+          background-color: rgba(220, 220, 220, 0.4);
+        }
+        @include media($xs) {
+          padding-right: 40px;
+        }
+        span {
+          @include font-reg;
+          font-size: 14px;
+          text-transform: uppercase;
+          @include media($xs) {
+            font-size: 12px;
+          }
+        }
+        p {
+          margin: 0;
+          @include font-bold;
+          font-size: 18px;
+          @include media($xs) {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+  .btn-next {
+    display: block;
+    border: 2px solid $red;
+    background-color: $red;
+    border-radius: 4px;
+    color: $white;
+    font-size: 18px;
+    @include font-reg;
+    text-transform: uppercase;
+    outline: none;
+    width: 100%;
+    max-width: 500px;
+    height: 44px;
+    margin: 0 auto;
+    @include transition(300ms);
+    &:hover {
+      background-color: $red-hover;
+      border-color: $red-hover;
+    }
+    @include media($xs) {
+      height: 40px;
+      font-size: 16px;
+    }
+    &.has-error {
+      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+    &[disabled] {
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+  .message {
+    text-align: center;
+    margin: 15px 0 0;
+    color: $red;
+    font-size: 18px;
+    @include media($xs) {
+      font-size: 16px;
+    }
+  }
+}

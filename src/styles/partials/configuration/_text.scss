@@ -1,0 +1,22 @@
+// Texts
+
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+@mixin font-bold {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+@mixin font-reg {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+@mixin clip-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
