@@ -25,6 +25,7 @@ sassFiles = "#{sourceDir}/**/*.scss"
 pugHtmlFiles = "#{sourceDir}/**/*.html.pug"
 pugJsFiles = "#{sourceDir}/**/*.js.pug"
 jsFiles = "#{sourceDir}/**/*.js"
+imgFiles = "#{sourceDir}/img/**"
 
 gulp.task "copy", ->
   gulp.src ["#{sourceDir}/img/**", "#{sourceDir}/js/**/*.js"], base: sourceDir
@@ -72,7 +73,7 @@ gulp.task "build-requirejs", ->
     .pipe gulp.dest distDir
 
 gulp.task "clean", (cb) ->
-  del ["#{distDir}/**", "!#{distDir}", "!#{distDir}/lib/**", "!#{distDir}/img/**"], cb
+  del ["#{distDir}/**", "!#{distDir}", "!#{distDir}/lib/**"], cb
 
 gulp.task "watch", ["build-scripts", "build-requirejs", "build-sass", "build-pug-html", "build-pug-js", "copy"], ->
   gulp.watch coffeeFiles, ["build-scripts"]
@@ -80,6 +81,7 @@ gulp.task "watch", ["build-scripts", "build-requirejs", "build-sass", "build-pug
   gulp.watch pugHtmlFiles, ["build-pug-html"]
   gulp.watch pugJsFiles, ["build-pug-js"]
   gulp.watch jsFiles, ["copy"]
+  gulp.watch imgFiles, ["copy"]
 
 gulp.task "default", ->
   runSequence "clean", ["watch"]
@@ -89,3 +91,6 @@ gulp.task "serve", ["default"], ->
     root: distDir
     livereload: on
     fallback: "#{distDir}/index.html"
+
+gulp.task "build", ->
+  runSequence "clean", ["build-scripts", "build-requirejs", "build-sass", "build-pug-html", "build-pug-js", "copy"]
