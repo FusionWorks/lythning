@@ -1,0 +1,165 @@
+.topics-wrap {
+  margin-bottom: 30px;
+  h2 {
+    color: $black;
+    @include font-bold;
+    font-size: 60px;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -0.03em;
+    padding: 60px 0 30px;
+    @include media($sm) {
+      font-size: 50px;
+    }
+    @include media($xs) {
+      font-size: 30px;
+      padding: 30px 0 20px;
+    }
+  }
+  h3 {
+    @include font-reg;
+    font-size: 30px;
+    color: $black;
+    line-height: 45px;
+    margin: 0 0 30px;
+    text-align: center;
+    @include media($sm) {
+      font-size: 24px;
+      line-height: 36px;
+    }
+    @include media($xs) {
+      font-size: 20px;
+      line-height: 28px;
+      margin: 0 0 20px;
+    }
+  }
+}
+
+.topics-list-wrap {
+  .topic-item {
+    position: relative;
+    background-color: rgba(255,255,255,0.4);
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.1);
+    @include transition(300ms);
+    padding: 10px 10px;
+    &:hover {
+      background-color: $white;
+    }
+    strong {
+      @include font-bold;
+      font-size: 18px;
+      color: $black;
+      margin-bottom: 6px;
+      display: block;
+    }
+    p {
+      @include font-reg;
+      font-size: 16px;
+      color: $black;
+    }
+    &.green {
+      background-color: rgba(68, 171, 6, 0.2);
+    }
+    &.red {
+      background-color: rgba(255, 38, 78, 0.2);
+    }
+    &.grey {
+      background-color: rgba(200, 200, 200, 0.5);
+    }
+    .reps-wrap {
+      margin-bottom: 6px;
+      p {
+        margin: 0;
+        font-size: 12px;
+      }
+      p.level {
+        span {
+          text-transform: uppercase;
+        }
+      }
+    }
+    .answers-wrap {
+      text-align: center;
+      button {
+        display: inline-block;
+        margin: 0 5px;
+        @include transition(300ms);
+        font-size: 16px;
+        @include font-reg;
+        text-transform: uppercase;
+        outline: none;
+        height: 40px;
+        border: none;
+        border-radius: 4px;
+        background-color: $grey;
+        padding: 0 10px;
+        &:hover {
+          background-color: $bg;
+        }
+        &.active,
+        &:active {
+          background-color: $black;
+          color: $white;
+        }
+        @include media($xs) {
+          font-size: 13px;
+          margin: 0 1px;
+          height: 34px;
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+  .empty-topics-wrap {
+    text-align: center;
+    font-size: 20px;
+    @include font-reg;
+    color: $black;
+    padding: 83px 0;
+  }
+}
+
+.topics-tabs {
+  border: none;
+  text-align: center;
+  margin-bottom: 20px;
+  > li,
+  > li.active {
+    display: inline-block;
+    float: none;
+    margin: 0 5px;
+    @include media($xs) {
+      margin: 0 1px 5px;
+    }
+    > a,
+    > a:focus {
+      margin: 0;
+      border: none;
+      border-radius: 4px;
+      @include font-reg;
+      color: $black;
+      font-size: 18px;
+      @include transition(300ms);
+      cursor: pointer;
+      background-color: $white;
+      @include media($xs) {
+        font-size: 14px;
+        padding: 10px;
+      }
+      &:hover {
+        border: none;
+        background-color: $bg;
+      }
+    }
+  }
+  > li.active {
+    > a, > a:focus {
+      background-color: $red;
+      color: $white;
+      &:hover {
+        background-color: $red-hover;
+      }
+    }
+  }
+}

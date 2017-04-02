@@ -1,0 +1,12 @@
+strong= title
+.reps-wrap
+  each rep in reps
+    p.level
+      | Level:&nbsp;
+      span= rep.level
+    p.name
+      | #{rep.name} &mdash; #{rep.position}
+p= description
+.answers-wrap
+  each answer in answers
+    button.btn-answer(type="button" id="button-" + id + "-" + answer.id data-id=answer.id)= answer.text

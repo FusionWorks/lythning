@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-xs-12
+      h2 Topics list
+      h3 Review the topic and make your decision
+
+  .row
+    .col-lg-10.col-lg-offset-1
+      ul.nav.nav-tabs.topics-tabs(role="tablist")
+        li.active(role="presentation")
+          a(href="#all" aria-controls="home" role="tab" data-toggle="tab") All
+        li(role="presentation")
+          a(href="#interested" aria-controls="home" role="tab" data-toggle="tab") Interested
+        li(role="presentation")
+          a(href="#not-interested" aria-controls="home" role="tab" data-toggle="tab") Not interested
+        li(role="presentation")
+          a(href="#no-answer" aria-controls="home" role="tab" data-toggle="tab") Not answered
+      .tab-content
+        .tab-pane.active.fade.in#all.js-list-all(role="tabpanel")
+        .tab-pane.fade.js-list-interested#interested(role="tabpanel")
+        .tab-pane.fade.js-list-notinterested#not-interested(role="tabpanel")
+        .tab-pane.fade.js-list-noanswer#no-answer(role="tabpanel")
