@@ -2,6 +2,7 @@ define [], () ->
 
   [
     {
+      id: 1,
       name: "Sandy Hill",
       address: "2550 Sand Hill Rd",
       city: "Menlo Park",
@@ -10,6 +11,7 @@ define [], () ->
       country: "USA"
     },
     {
+      id: 2,
       name: "Joe Lee",
       address: "State Hwy 2025",
       city: "Ricetown",
@@ -18,6 +20,7 @@ define [], () ->
       country: "USA"
     },
     {
+      id: 3,
       name: "Sandy Hill",
       address: "2550 Sand St",
       city: "Portage",

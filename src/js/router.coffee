@@ -5,6 +5,9 @@ define [
   "helpers/local_storage"
   "models/user"
   "views/steps/representatives"
+  "collections/topics"
+  "views/topics/layout"
+  "views/topics/list"
 ], (
   Marionette
   Radio
@@ -12,6 +15,9 @@ define [
   LS
   UserModel
   RepresentativesView
+  TopicsCollection
+  TopicsLayoutView
+  TopicsList
 ) ->
 
   class Router extends Marionette.AppRouter
@@ -45,7 +51,30 @@ define [
       Radio.channel("layout").request("regions:container").show view
 
     topics: ->
-      console.log "TOPICS"
+      user = LS.get "user"
+      model = new UserModel user
+      topics = new TopicsCollection
+      topics.setCollectionByReps()
+
+      layout = new TopicsLayoutView
+        model: model
+
+      Radio.channel("layout").request("regions:container").show layout
+
+      allTopicsView = new TopicsList collection: topics
+      layout.listAll.show allTopicsView
+
+      woAnswersTopics = new TopicsCollection topics.getTopicsWoAnswers(model.id)
+      woAnswersTopicsView = new TopicsList collection: woAnswersTopics
+      layout.listNoAnswer.show woAnswersTopicsView
+
+      interestedTopics = new TopicsCollection topics.getTopicsByAnswers(model.id, [1,2])
+      interestedTopicsView = new TopicsList collection: interestedTopics
+      layout.listInterested.show interestedTopicsView
+
+      notInterestedTopics = new TopicsCollection topics.getTopicsByAnswers(model.id, 3)
+      notInterestedTopicsView = new TopicsList collection: notInterestedTopics
+      layout.listNotInterested.show notInterestedTopicsView
 
     notFound: ->
       console.log "404"
