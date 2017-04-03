@@ -80,7 +80,6 @@ define [
       layout.listNotInterested.show notInterestedTopicsView
 
     dashboard: ->
-      console.log "dashboard"
       view = new DashboardView
       Radio.channel("layout").request("regions:container").show view
 

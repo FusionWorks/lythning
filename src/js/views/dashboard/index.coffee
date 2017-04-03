@@ -17,12 +17,22 @@ define [
     template: template
 
     ui:
-      chart: ".js-chart"
+      chartTop: ".js-chart-top"
+      chartPolarized: ".js-chart-polarized"
 
     initialize: ->
       data = CHARTS_DATA.topIssues
-      @categories = data.map (item) -> item.topic
-      @series = @calculateSeries data
+      polarizerdProData = _.sortBy data, (item) ->
+        sum = item.pro + item.con
+        Math.floor(sum / item.pro * 100)
+
+      @topIssues = @prepareData data
+      @polarizedPro = @prepareData polarizerdProData
+
+    prepareData: (data) ->
+      categories = data.map (item) -> item.topic
+      series = @calculateSeries data
+      [categories, series]
 
     calculateSeries: (data) ->
       pros = _.pluck data, "pro"
@@ -38,13 +48,13 @@ define [
       }]
 
     onShow: ->
-      @ui.chart.highcharts
+      @ui.chartTop.highcharts
         chart:
           type: "bar"
         title:
           text: "Top Issues"
         xAxis:
-          categories: @categories
+          categories: @topIssues[0]
         yAxis:
           min: 0
           title:
@@ -54,4 +64,22 @@ define [
         plotOptions:
           series:
             stacking: "percent"
-        series: @series
+        series: @topIssues[1]
+
+      @ui.chartPolarized.highcharts
+        chart:
+          type: "bar"
+        title:
+          text: "Most polarized issues"
+        xAxis:
+          categories: @polarizedPro[0]
+        yAxis:
+          min: 0
+          title:
+            text: "Total Pros and Cons"
+        legend:
+          reversed: true
+        plotOptions:
+          series:
+            stacking: "percent"
+        series: @polarizedPro[1]
