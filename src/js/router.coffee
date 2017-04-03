@@ -8,6 +8,7 @@ define [
   "collections/topics"
   "views/topics/layout"
   "views/topics/list"
+  "views/dashboard/index"
 ], (
   Marionette
   Radio
@@ -18,6 +19,7 @@ define [
   TopicsCollection
   TopicsLayoutView
   TopicsList
+  DashboardView
 ) ->
 
   class Router extends Marionette.AppRouter
@@ -25,6 +27,7 @@ define [
       "": "index"
       "representatives": "representatives"
       "topics": "topics"
+      "dashboard": "dashboard"
       "home": -> @redirectToHome()
       "_=_": "redirectToHome"
       "*All": "notFound"
@@ -75,6 +78,11 @@ define [
       notInterestedTopics = new TopicsCollection topics.getTopicsByAnswers(model.id, 3)
       notInterestedTopicsView = new TopicsList collection: notInterestedTopics
       layout.listNotInterested.show notInterestedTopicsView
+
+    dashboard: ->
+      console.log "dashboard"
+      view = new DashboardView
+      Radio.channel("layout").request("regions:container").show view
 
     notFound: ->
       console.log "404"

@@ -2,8 +2,13 @@ require.config
   baseUrl: "/js"
   wrapShim: true
   shim:
-    "Bootstrap": "deps": [ "jquery" ]
-    "Growl": "deps": [ "jquery" ]
+    "Bootstrap":
+      "deps": ["jquery"]
+    "Growl":
+      "deps": ["jquery"]
+    "highcharts":
+      "exports": "Highcharts"
+      "deps": ["jquery"]
   paths:
     "jquery": "https://code.jquery.com/jquery-2.2.4.min"
     "jquery-ui": "https://code.jquery.com/ui/1.12.1/jquery-ui.min"
@@ -19,12 +24,14 @@ require.config
     "Validation": "../lib/backbone.validation/dist/backbone-validation-amd-min"
     "Growl": "../lib/growl/javascripts/jquery.growl"
     "async": "../lib/requirejs-plugins/src/async"
+    "highcharts": "../lib/highcharts/highcharts"
   map: "*":
     "backbone": "Backbone"
     "backbone.wreqr": "Radio"
     "backbone.marionette": "Marionette"
     "backbone.radio": "Radio"
     "jquery.ui": "jquery-ui"
+    "Highcharts": "highcharts"
 
 require [
   'jquery'
