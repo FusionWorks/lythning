@@ -19,15 +19,20 @@ define [
     ui:
       chartTop: ".js-chart-top"
       chartPolarized: ".js-chart-polarized"
+      chartTime: ".js-chart-time"
 
     initialize: ->
       data = CHARTS_DATA.topIssues
-      polarizerdProData = _.sortBy data, (item) ->
+      polarizerdProData = _.sortBy(data, (item) ->
         sum = item.pro + item.con
-        Math.floor(sum / item.pro * 100)
+        pro = Math.floor(sum / item.pro * 100)
+        con = Math.floor(sum / item.con * 100)
+        if pro >= con then pro else con
+      ).reverse()
 
       @topIssues = @prepareData data
       @polarizedPro = @prepareData polarizerdProData
+      @timeData = @prepareTimeData CHARTS_DATA.timeChart
 
     prepareData: (data) ->
       categories = data.map (item) -> item.topic
@@ -46,6 +51,20 @@ define [
         data: pros
         color: "#44ab06"
       }]
+
+    prepareTimeData: (data) ->
+      series = []
+      for item in data
+        seria =
+          name: item.topic
+          data: @calculatePercent item.pro, item.con
+        series.push seria
+      series
+
+    calculatePercent: (pro, con) ->
+      pro.map (p, index) ->
+        onePercent = Math.floor((p + con[index]) / 100)
+        Math.floor(p / onePercent)
 
     onShow: ->
       @ui.chartTop.highcharts
@@ -83,3 +102,21 @@ define [
           series:
             stacking: "percent"
         series: @polarizedPro[1]
+
+      @ui.chartTime.highcharts
+        chart:
+          type: "line"
+        title:
+          text: "Pros for the last year, %"
+        xAxis:
+          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        yAxis:
+          title:
+            text: "%"
+        plotOptions:
+          line:
+            dataLabels:
+              enabled: false
+            enableMouseTracking: true
+        series: @timeData
+
