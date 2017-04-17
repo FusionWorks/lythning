@@ -24,12 +24,12 @@ define [
 
   class Router extends Marionette.AppRouter
     routes:
-      "": "index"
-      "representatives": "representatives"
-      "topics": "topics"
-      "dashboard": "dashboard"
-      "home": -> @redirectToHome()
-      "_=_": "redirectToHome"
+      # "": "index"
+      # "representatives": "representatives"
+      # "topics": "topics"
+      # "dashboard": "dashboard"
+      # "home": -> @redirectToHome()
+      # "_=_": "redirectToHome"
       "*All": "notFound"
 
     initialize: ->
